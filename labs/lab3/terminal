@@ -1,0 +1,84 @@
+akii_my@Amyui-MacBookAir ~ % mkdir lab3
+akii_my@Amyui-MacBookAir ~ % cd lab3
+akii_my@Amyui-MacBookAir lab3 % curl -O http://textfiles.com/food/bread.txt 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  3611  100  3611    0     0  12117      0 --:--:-- --:--:-- --:--:-- 12117
+akii_my@Amyui-MacBookAir lab3 % ls
+bread.txt
+akii_my@Amyui-MacBookAir lab3 % curl -O http://textfiles.com/food/btaco.txt 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   900  100   900    0     0   4945      0 --:--:-- --:--:-- --:--:--  4918
+akii_my@Amyui-MacBookAir lab3 % curl -O http://textfiles.com/food/beesherb.txt 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  5293  100  5293    0     0  26202      0 --:--:-- --:--:-- --:--:-- 26202
+akii_my@Amyui-MacBookAir lab3 % curl -O http://textfiles.com/food/1st_aid.txt 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2395  100  2395    0     0  12945      0 --:--:-- --:--:-- --:--:-- 12945
+akii_my@Amyui-MacBookAir lab3 % curl -O http://archive.ics.uci.edu/ml/machine-learning-databases/forest-fires/forestfires.csv
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 25478  100 25478    0     0  44386      0 --:--:-- --:--:-- --:--:-- 44386
+akii_my@Amyui-MacBookAir lab3 % curl -O http://www.math.uah.edu/stat/data/Fisher.csv
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   220  100   220    0     0    210      0  0:00:01  0:00:01 --:--:--   210
+akii_my@Amyui-MacBookAir lab3 % curl -O http://web.pdx.edu/~gerbing/data/cars.csv
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 20964  100 20964    0     0  26773      0 --:--:-- --:--:-- --:--:-- 26739
+akii_my@Amyui-MacBookAir lab3 % ls -l
+total 152
+-rw-r--r--  1 akii_my  staff   2395 10  2 04:23 1st_aid.txt
+-rw-r--r--  1 akii_my  staff    220 10  2 04:24 Fisher.csv
+-rw-r--r--  1 akii_my  staff   5293 10  2 04:22 beesherb.txt
+-rw-r--r--  1 akii_my  staff   3611 10  2 04:22 bread.txt
+-rw-r--r--  1 akii_my  staff    900 10  2 04:22 btaco.txt
+-rw-r--r--  1 akii_my  staff  20964 10  2 04:24 cars.csv
+-rw-r--r--  1 akii_my  staff  25478 10  2 04:24 forestfires.csv
+akii_my@Amyui-MacBookAir lab3 % man ls
+akii_my@Amyui-MacBookAir lab3 % ls -r
+forestfires.csv	btaco.txt	beesherb.txt	1st_aid.txt
+cars.csv	bread.txt	Fisher.csv
+akii_my@Amyui-MacBookAir lab3 % ls
+1st_aid.txt	beesherb.txt	btaco.txt	forestfires.csv
+Fisher.csv	bread.txt	cars.csv
+akii_my@Amyui-MacBookAir lab3 % man ls
+akii_my@Amyui-MacBookAir lab3 % ls -l -t
+total 152
+-rw-r--r--  1 akii_my  staff  20964 10  2 04:24 cars.csv
+-rw-r--r--  1 akii_my  staff    220 10  2 04:24 Fisher.csv
+-rw-r--r--  1 akii_my  staff  25478 10  2 04:24 forestfires.csv
+-rw-r--r--  1 akii_my  staff   2395 10  2 04:23 1st_aid.txt
+-rw-r--r--  1 akii_my  staff   5293 10  2 04:22 beesherb.txt
+-rw-r--r--  1 akii_my  staff    900 10  2 04:22 btaco.txt
+-rw-r--r--  1 akii_my  staff   3611 10  2 04:22 bread.txt
+akii_my@Amyui-MacBookAir lab3 % mkdir data
+akii_my@Amyui-MacBookAir data % cd /Users/akii_my/lab3
+akii_my@Amyui-MacBookAir lab3 % mv bread.txt /Users/akii_my/lab3/data/txt-files
+akii_my@Amyui-MacBookAir lab3 % mv *.txt /Users/akii_my/lab3/data/txt-files
+akii_my@Amyui-MacBookAir lab3 % mv *.csv /Users/akii_my/lab3/data/csv-files
+akii_my@Amyui-MacBookAir lab3 % mkdir copies
+akii_my@Amyui-MacBookAir lab3 % cp /Users/akii_my/lab3/data/txt-files/bread.txt /Users/akii_my/lab3/copies
+akii_my@Amyui-MacBookAir lab3 % cp /Users/akii_my/lab3/data/txt-files/*.txt /Users/akii_my/lab3/copies
+akii_my@Amyui-MacBookAir lab3 % cp /Users/akii_my/lab3/data/csv-files/*.csv /Users/akii_my/lab3/copies 
+akii_my@Amyui-MacBookAir lab3 % cd copies
+akii_my@Amyui-MacBookAir copies % mv bread.txt bread-recipe.txt
+akii_my@Amyui-MacBookAir copies % mv Fisher.csv iris.csv
+akii_my@Amyui-MacBookAir copies % mv btaco.txt breakfast-taco.txt
+akii_my@Amyui-MacBookAir copies % cd lab3
+cd: no such file or directory: lab3
+akii_my@Amyui-MacBookAir copies % cd /Users/akii_my/lab3
+akii_my@Amyui-MacBookAir lab3 % mv copies copy-files
+akii_my@Amyui-MacBookAir lab3 % rm copy-files
+rm: copy-files: is a directory
+akii_my@Amyui-MacBookAir lab3 % rm -r copy-files
+akii_my@Amyui-MacBookAir lab3 % cd data 
+akii_my@Amyui-MacBookAir data % cd txt-files
+akii_my@Amyui-MacBookAir txt-files % ls
+1st_aid.txt	beesherb.txt	bread.txt	btaco.txt
+akii_my@Amyui-MacBookAir txt-files % ls -r
+btaco.txt	bread.txt	beesherb.txt	1st_aid.txt

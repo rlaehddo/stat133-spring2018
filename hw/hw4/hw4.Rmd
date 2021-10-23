@@ -1,0 +1,168 @@
+---
+title: "Hw 4: Strings and Regular Expressions "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Archieve of R Package
+
+```{r}
+raw_data <- read_archive('stringr')
+clean_data <- clean_archive(raw_data)
+plot_archive(clean_data)
+
+
+library(XML)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+
+raw_data_dplyr <- read_archive('dplyr')
+clean_data_dplyr <- clean_archive(raw_data_dplyr)
+plot_archive(clean_data_dplyr)
+```
+
+```{r}
+
+p1 <- plot_archive(clean_data_dplyr)
+
+write.table(clean_archive(raw_data_dplyr), file = "~/Desktop/school/stat133/hw/hw4/data/dplyr-archive.csv", 
+            sep = ",",
+            col.names = TRUE,
+            row.names = FALSE)
+
+
+raw_data_ggplot <- read_archive('ggplot2')
+clean_data_ggplot <- clean_archive(raw_data_ggplot)
+plot_archive(clean_data_ggplot)
+
+
+p2 <- plot_archive(clean_data_ggplot)
+
+write.table(clean_archive(raw_data_ggplot), file = "~/Desktop/school/stat133/hw/hw4/data/ggplot-archive.csv", 
+            sep = ",",
+            col.names = TRUE,
+            row.names = FALSE)
+
+
+
+raw_data_XML <- read_archive('XML')
+clean_data_XML <- clean_archive(raw_data_XML)
+plot_archive(clean_data_XML)
+
+
+
+p3<- plot_archive(clean_data_XML)
+
+write.table(clean_archive(raw_data_XML), file = "~/Desktop/school/stat133/hw/hw4/data/xml-archive.csv", 
+            sep = ",",
+            col.names = TRUE,
+            row.names = FALSE)
+
+
+
+raw_data_knitr <- read_archive('knitr')
+clean_data_knitr <- clean_archive(raw_data_knitr)
+plot_archive(clean_data_knitr)
+
+
+
+p4 <- plot_archive(clean_data_knitr)
+
+write.table(clean_archive(raw_data_knitr), file = "~/Desktop/school/stat133/hw/hw4/data/knir-archive.csv", 
+            sep = ",",
+            col.names = TRUE,
+            row.names = FALSE)
+
+
+
+
+
+```
+```{r}
+#merge dataframe
+library(ggplot2)
+combined_data <-
+  rbind.data.frame(clean_data_dplyr, clean_data_ggplot, clean_data_knitr, clean_data_XML)
+
+#merged plot
+ggplot(combined_data, aes(x = date, y = size)) +
+  geom_step(aes(col = name)) +
+  ggtitle("timeline of version sizes") +
+  xlab("date") + ylab("Size (KB)")
+
+#faceted plot
+ggplot(combined_data, aes(x = date, y = size)) +
+  geom_step(aes(col = name)) +
+  facet_wrap(~name, scales="free") +
+  ggtitle("timeline of version sizes") +
+  xlab("date") + ylab("Size (KB)")
+
+```
+
+```{r}
+#3.1)  Number of characters per tweet
+tweet <- read.csv("https://raw.githubusercontent.com/ucb-stat133/stat133-spring-2018/master/data/text-emotion.csv", stringsAsFactors = FALSE)
+
+
+
+#count the number of characters per tweet 
+chars_per_tweet <- str_count(tweet$content)
+summary(chars_per_tweet)
+
+#plot a histogram 
+hist(chars_per_tweet,
+     main = "Histogram of number of characters in tweet",
+     xlab = "Number of Characters",
+     col = "lavender",
+     xlim = c(0, 200),
+     breaks = 50)
+
+
+#3.2) Number of Mentions
+
+library(stringr)
+#mention counts and plot
+mention <- str_extract_all(tweet$content, '@[\\w]{1,16}[\\w]{1,16}')
+mention_count <- sapply(mention, length)
+mention_table <- table(mention_count)
+mention_table
+
+
+barplot(mention_table)
+
+
+#tweet with 10 mentions
+i <- which.max(mention_count)
+mention[i]
+
+
+#3.3) Hashtags
+
+hash_tags <- str_extract_all(tweet$content, pattern = "#[[:alpha:]][[:alnum:]]*")
+hash_count <-sapply(hash_tags, length)
+hash_table <- table(hash_count)
+barplot(hash_table)
+
+
+
+mean(hash_count)
+
+#length of hash tags
+hash_tags[1]
+
+
+hashtags <- unlist(hash_tags)
+hash_length <- str_count(hashtags) - 1
+mean(hash_length)
+
+table(hash_length)
+which.max(hash_length)
+
+
+
+```
+
